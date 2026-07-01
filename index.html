@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STL Logistics — Ireland's Leading Transport & Warehousing Company</title>
+  <meta name="description" content="STL Logistics — National Freight, Contract Logistics, Warehousing & CVRT Testing. Contact: +353 61 200200. Serving Ireland from Limerick, Dublin, Tipperary, Clare, Roscommon & Belfast.">
+  <link rel="icon" href="https://stllogistics.ie/wp-content/uploads/2022/02/stl_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ================================
+       CUSTOM PROPERTIES
+    ================================ */
+    :root {
+      --yellow:       #fdc914;
+      --yellow-dark:  #e5b200;
+      --navy:         #0c2340;
+      --blue:         #0565a3;
+      --dark:         #111111;
+      --mid:          #333333;
+      --grey:         #666666;
+      --light:        #f5f5f5;
+      --border:       #e2e2e2;
+      --white:        #ffffff;
+      --fh:           'Montserrat', sans-serif;
+      --fb:           'Open Sans', sans-serif;
+      --nav-h:        100px;
+      --max-w:        1180px;
+      --pad:          80px;
+    }
+
+    /* ================================
+       RESET
+    ================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--fb); color: var(--dark); background: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ================================
+       SHARED TYPOGRAPHY
+    ================================ */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--fh);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+    .eyebrow--light { color: var(--yellow); }
+    .eyebrow::before, .eyebrow::after {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--yellow);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--fh);
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--dark);
+    }
+
+    /* ================================
+       BUTTONS
+    ================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      font-family: var(--fh);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-yellow  { background: var(--yellow);  color: var(--dark); }
+    .btn-yellow:hover  { background: var(--yellow-dark); }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.45);
+    }
+    .btn-outline-white:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--dark);
+      border-color: var(--dark);
+    }
+    .btn-outline-dark:hover { background: var(--dark); color: var(--white); }
+
+    /* ================================
+       NAVIGATION
+    ================================ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(12,35,64,0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.35s, box-shadow 0.35s, border-color 0.35s;
+    }
+    #nav.scrolled {
+      background: var(--navy);
+      border-color: transparent;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    }
+    .nav-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-h);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .nav-logo img { height: 56px; width: auto; }
+
+    /* Desktop links — absolutely centred in the bar */
+    .nav-links {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 16px;
+      font-family: var(--fh);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--white);
+      border-radius: 3px;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--yellow); }
+    .nav-chevron {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+    }
+
+    /* Dropdown */
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      background: var(--white);
+      min-width: 230px;
+      border-radius: 4px;
+      border-top: 3px solid var(--yellow);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.14);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+    .nav-item:hover .nav-dropdown,
+    .nav-item:focus-within .nav-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .nav-dropdown a {
+      display: block;
+      padding: 11px 18px;
+      font-family: var(--fh);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--mid);
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-dropdown a + a { border-top: 1px solid var(--border); }
+    .nav-dropdown a:hover { background: var(--light); color: var(--blue); }
+
+    /* Portal — standalone far-right button */
+    .nav-portal-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 20px;
+      background: var(--yellow);
+      color: var(--dark);
+      font-family: var(--fh);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .nav-portal-btn:hover { background: var(--yellow-dark); }
+
+    /* Mobile toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ================================
+       MOBILE NAV DRAWER
+    ================================ */
+    #mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--navy);
+      flex-direction: column;
+      padding: calc(var(--nav-h) + 24px) 32px 48px;
+      overflow-y: auto;
+    }
+    #mobile-nav.open { display: flex; }
+    .mob-link {
+      display: block;
+      padding: 15px 0;
+      font-family: var(--fh);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+    }
+    .mob-link:hover { color: var(--yellow); }
+    .mob-sub {
+      padding: 6px 0 6px 18px;
+    }
+    .mob-sub a {
+      display: block;
+      padding: 9px 0;
+      font-family: var(--fh);
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color 0.2s;
+    }
+    .mob-sub a:hover { color: var(--yellow); }
+    .mob-portal {
+      display: block;
+      margin-top: 28px;
+      padding: 15px;
+      background: var(--yellow);
+      color: var(--dark);
+      text-align: center;
+      font-family: var(--fh);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border-radius: 3px;
+    }
+    .mob-portal:hover { background: var(--yellow-dark); }
+
+    /* ================================
+       HERO — SHARED
+    ================================ */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    /* nav scrim — always */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 220px;
+      background: linear-gradient(to bottom, rgba(12,35,64,0.6) 0%, transparent 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://stllogistics.ie/wp-content/uploads/2022/02/stl_logistics_3.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      transition: background-position 0.5s;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 140px 80px 80px;
+      max-width: 660px;
+    }
+    .hero-pre {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--fh);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 22px;
+    }
+    .hero-pre::before {
+      content: '';
+      width: 32px; height: 2px;
+      background: var(--yellow);
+    }
+    .hero-h1 {
+      font-family: var(--fh);
+      font-size: clamp(3.2rem, 7vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1.04;
+      color: var(--white);
+      margin-bottom: 36px;
+    }
+    .hero-h1 em { font-style: normal; color: var(--white); }
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+      max-width: 460px;
+      margin-bottom: 40px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ================================
+       VARIANT A — Left gradient fade
+       Trucks visible, colour dissolves left→right
+    ================================ */
+    #hero.var-a .hero-overlay {
+      background: linear-gradient(105deg,
+        rgba(12,35,64,0.97) 0%,
+        rgba(12,35,64,0.88) 28%,
+        rgba(12,35,64,0.55) 52%,
+        rgba(12,35,64,0.1) 72%,
+        transparent 88%
+      );
+    }
+
+    /* ================================
+       STATS
+    ================================ */
+    #stats {
+      padding: var(--pad) 0;
+    }
+    .stats-top {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .stat-cell {
+      padding: 48px 28px;
+      text-align: center;
+      position: relative;
+      transition: background 0.25s;
+    }
+    .stat-cell + .stat-cell { border-left: 1px solid var(--border); }
+    .stat-cell:hover { background: var(--light); }
+    .stat-cell::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 3px;
+      background: var(--yellow);
+      transition: width 0.3s;
+    }
+    .stat-cell:hover::after { width: 48px; }
+    .stat-num {
+      font-family: var(--fh);
+      font-size: clamp(2.4rem, 3.5vw, 3.4rem);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .stat-num sup {
+      font-size: 0.5em;
+      color: var(--yellow);
+      vertical-align: super;
+    }
+    .stat-label {
+      font-family: var(--fh);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    /* ================================
+       COUNTRYWIDE BAND
+    ================================ */
+    #countrywide {
+      position: relative;
+      padding: 110px 0;
+      overflow: hidden;
+    }
+    .cw-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://stllogistics.ie/wp-content/uploads/2022/02/STL_warehousing_distribution_transport.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .cw-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(12,35,64,0.94) 0%,
+        rgba(12,35,64,0.88) 45%,
+        rgba(12,35,64,0.45) 100%
+      );
+    }
+    #countrywide .container { position: relative; z-index: 1; }
+    .cw-inner { max-width: none; text-align: center; }
+    .cw-title {
+      font-family: var(--fh);
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 28px;
+    }
+    .depot-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 36px;
+      justify-content: center;
+    }
+    .depot-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 100px;
+      font-family: var(--fh);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--white);
+    }
+    .depot-pill::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+      flex-shrink: 0;
+    }
+
+    /* ================================
+       SERVICES CAROUSEL
+    ================================ */
+    #services {
+      padding: var(--pad) 0;
+      background: var(--light);
+    }
+    .srv-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .srv-intro {
+      font-size: 0.96rem;
+      color: var(--grey);
+      max-width: 480px;
+      margin-top: 10px;
+      line-height: 1.7;
+    }
+
+    /* Carousel wrapper */
+    .srv-carousel {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 520px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.16);
+    }
+
+    /* Individual slides */
+    .srv-slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 42% 58%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.55s ease;
+    }
+    .srv-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Left content panel */
+    .srv-panel {
+      background: var(--navy);
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .srv-tag {
+      align-self: flex-start;
+      padding: 4px 10px;
+      background: var(--yellow);
+      color: var(--dark);
+      font-family: var(--fh);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+    .srv-name {
+      font-family: var(--fh);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .srv-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .srv-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fh);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      transition: gap 0.2s;
+    }
+    .srv-more:hover { gap: 14px; }
+    .srv-more-arrow { transition: transform 0.2s; }
+    .srv-more:hover .srv-more-arrow { transform: translateX(4px); }
+
+    /* Right image panel */
+    .srv-slide-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .srv-slide-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.65s ease;
+    }
+    .srv-slide.active .srv-slide-img img { transform: scale(1.04); }
+
+    /* Progress bar */
+    .srv-progress {
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 3px;
+      background: var(--yellow);
+      width: 0%;
+      transition: width linear;
+      z-index: 5;
+    }
+
+    /* Controls */
+    .srv-controls {
+      position: absolute;
+      bottom: 28px;
+      right: 28px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .srv-arr {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(12,35,64,0.55);
+      backdrop-filter: blur(6px);
+      color: var(--white);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .srv-arr:hover { background: var(--yellow); border-color: var(--yellow); color: var(--dark); }
+
+    /* Dot nav */
+    .srv-dots {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+    .srv-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .srv-dot.active {
+      background: var(--yellow);
+      transform: scale(1.3);
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .srv-carousel { height: auto; }
+      .srv-slide {
+        position: relative;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 240px;
+        opacity: 1;
+        pointer-events: auto;
+        display: none;
+      }
+      .srv-slide.active { display: grid; }
+      .srv-panel { padding: 36px 28px; }
+      .srv-name { font-size: 1.5rem; }
+      .srv-controls { bottom: 16px; right: 16px; }
+    }
+
+    /* ================================
+       BRAND LOGOS CAROUSEL
+    ================================ */
+    #brands {
+      padding: 64px 0;
+      background: var(--white);
+      overflow: hidden;
+    }
+    .brands-header {
+      padding: 0 var(--pad-x, 24px);
+      margin-bottom: 40px;
+    }
+    .brands-track-wrap {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .brands-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      animation: brands-scroll 40s linear infinite;
+    }
+    .brands-track:hover { animation-play-state: paused; }
+    @keyframes brands-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .brands-slide {
+      flex-shrink: 0;
+      width: 160px;
+      height: 80px;
+      background: var(--white);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 18px;
+      transition: opacity 0.2s;
+    }
+    .brands-slide:hover { opacity: 0.8; }
+    .brands-slide img {
+      max-width: 100%;
+      max-height: 48px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(0.15);
+      transition: filter 0.2s;
+    }
+    .brands-slide:hover img { filter: grayscale(0); }
+
+    /* ================================
+       CTA BAND
+    ================================ */
+    #cta {
+      padding: 80px 0;
+      background: var(--navy);
+    }
+    .cta-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .cta-head {
+      font-family: var(--fh);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .cta-sub {
+      font-size: 0.96rem;
+      color: rgba(255,255,255,0.55);
+    }
+    .cta-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 16px;
+    }
+    .cta-phone {
+      font-family: var(--fh);
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--yellow);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+    .cta-phone:hover { color: var(--yellow-dark); }
+
+    /* ================================
+       FOOTER
+    ================================ */
+    #footer {
+      background: #091728;
+      padding: 48px 0 32px;
+    }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 26px;
+    }
+    .footer-logo img {
+      height: 38px;
+      filter: brightness(0) invert(1);
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+    .footer-links a {
+      padding: 6px 12px;
+      font-family: var(--fh);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-copy a { color: rgba(255,255,255,0.45); }
+    .footer-copy a:hover { color: var(--white); }
+    .footer-reg {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ================================
+       BACK TO TOP
+    ================================ */
+    #btt {
+      position: fixed;
+      bottom: 26px; right: 26px;
+      width: 44px; height: 44px;
+      background: var(--yellow);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 900;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+    #btt.show { opacity: 1; transform: translateY(0); }
+    #btt:hover { background: var(--yellow-dark); }
+    #btt svg { width: 18px; height: 18px; stroke: var(--dark); }
+
+    /* ================================
+       RESPONSIVE — TABLET
+    ================================ */
+    @media (max-width: 1024px) {
+      .srv-grid { grid-template-columns: 1fr; }
+      .srv-card { grid-template-columns: 200px 1fr; }
+    }
+
+    /* ================================
+       RESPONSIVE — MOBILE
+    ================================ */
+    @media (max-width: 768px) {
+      :root { --pad: 60px; }
+      .nav-links { display: none; }
+      .nav-portal-btn { display: none; }
+      .nav-toggle { display: flex; }
+
+      .hero-content { padding: 130px 28px 60px; max-width: 100%; }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        border-radius: 0;
+      }
+      .stat-cell + .stat-cell { border-left: none; }
+      .stat-cell:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat-cell:nth-child(n+3) { border-top: 1px solid var(--border); }
+
+      .srv-header { flex-direction: column; align-items: flex-start; }
+      .srv-card {
+        grid-template-columns: 1fr;
+      }
+      .srv-img { height: 200px; }
+
+      .cta-flex { flex-direction: column; }
+      .cta-right { align-items: flex-start; }
+
+      .footer-top { flex-direction: column; align-items: flex-start; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content { padding: 110px 20px 52px; }
+      .hero-h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===========================
+     NAV
+=========================== -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" aria-label="STL Logistics Home">
+      <img src="https://stllogistics.ie/wp-content/uploads/2021/11/stl_logo_limerick.png" alt="STL Logistics">
+    </a>
+
+    <ul class="nav-links" role="menubar">
+      <li class="nav-item">
+        <a class="nav-link" href="/" role="menuitem">Home</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="about.html" role="menuitem" aria-haspopup="true">
+          About Us <span class="nav-chevron" aria-hidden="true"></span>
+        </a>
+        <div class="nav-dropdown" role="menu">
+          <a href="about.html" role="menuitem">About STL</a>
+          <a href="facilities.html" role="menuitem">Facilities Overview</a>
+          <a href="what-sets-us-apart.html" role="menuitem">What Sets Us Apart</a>
+          <a href="csr.html" role="menuitem">Corporate Social Responsibility</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="services.html" role="menuitem" aria-haspopup="true">
+          Services <span class="nav-chevron" aria-hidden="true"></span>
+        </a>
+        <div class="nav-dropdown" role="menu">
+          <a href="warehousing.html" role="menuitem">Warehousing</a>
+          <a href="transport.html" role="menuitem">Transport</a>
+          <a href="contract-logistics.html" role="menuitem">Contract Logistics</a>
+          <a href="cvrt-centre.html" role="menuitem">CVRT Centre</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="careers.html" role="menuitem">Careers</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html" role="menuitem">Contact</a>
+      </li>
+
+    </ul>
+
+    <a class="nav-portal-btn" href="https://stllogistics.ie/customer_area_stl_logistics/">Customer Portal</a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div id="mobile-nav" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+  <a class="mob-link" href="/">Home</a>
+
+  <a class="mob-link" href="about.html">About Us</a>
+  <div class="mob-sub">
+    <a href="about.html">About STL</a>
+    <a href="facilities.html">Facilities Overview</a>
+    <a href="what-sets-us-apart.html">What Sets Us Apart</a>
+    <a href="csr.html">Corporate Social Responsibility</a>
+  </div>
+
+  <a class="mob-link" href="services.html">Services</a>
+  <div class="mob-sub">
+    <a href="warehousing.html">Warehousing</a>
+    <a href="transport.html">Transport</a>
+    <a href="contract-logistics.html">Contract Logistics</a>
+    <a href="cvrt-centre.html">CVRT Centre</a>
+  </div>
+
+  <a class="mob-link" href="careers.html">Careers</a>
+  <a class="mob-link" href="contact.html">Contact</a>
+
+  <a class="mob-portal" href="https://stllogistics.ie/customer_area_stl_logistics/">Customer Portal — Login</a>
+</div>
+
+
+<!-- ===========================
+     HERO
+=========================== -->
+<section id="hero" class="var-a" aria-label="Hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-pre" aria-hidden="true">Ireland's Logistics Partner</p>
+    <h1 class="hero-h1"><span style="white-space:nowrap">Leading <em>Edge</em></span><br>Logistics</h1>
+    <div class="hero-btns">
+      <a class="btn btn-yellow" href="about.html">Our Story</a>
+      <a class="btn btn-outline-white" href="contact.html">Get in Touch</a>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ===========================
+     STATS
+=========================== -->
+<section id="stats" aria-label="Company statistics">
+  <div class="container">
+    <div class="stats-top">
+      <p class="eyebrow">By the numbers</p>
+      <h2 class="section-title">The scale to get it done</h2>
+    </div>
+    <div class="stats-grid" role="list">
+      <div class="stat-cell" role="listitem">
+        <div class="stat-num" data-target="400" data-suffix="+">0</div>
+        <div class="stat-label">Employees</div>
+      </div>
+      <div class="stat-cell" role="listitem">
+        <div class="stat-num" data-target="140000" data-suffix="">0</div>
+        <div class="stat-label">Pallet Spaces</div>
+      </div>
+      <div class="stat-cell" role="listitem">
+        <div class="stat-num" data-target="50" data-suffix="+">0</div>
+        <div class="stat-label">Years in Business</div>
+      </div>
+      <div class="stat-cell" role="listitem">
+        <div class="stat-num" data-target="150" data-suffix="+">0</div>
+        <div class="stat-label">Trucks in Fleet</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================
+     BRAND LOGOS
+=========================== -->
+<section id="brands" aria-label="Clients who trust STL">
+  <div class="brands-header">
+    <p class="eyebrow" style="text-align:center;">Trusted By</p>
+    <h2 class="section-title" style="text-align:center;margin-bottom:0;">Great Brands Trust STL</h2>
+  </div>
+  <div class="brands-track-wrap" aria-hidden="true">
+    <div class="brands-track">
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/britvic.jpg" alt="Britvic"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Nestle-Logo-copy-2.png" alt="Nestlé"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Kellogg-Logo-copy-300x168.png" alt="Kellogg's"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Johnson_and_Johnson_Logo.svg-copy-300x54.png" alt="Johnson &amp; Johnson"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Glanbia_logo.png" alt="Glanbia"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Diageo-Logo-copy.png" alt="Diageo"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Irish_Distillers_logo.jpg" alt="Irish Distillers"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/kerry_STE_logistics.jpg" alt="Kerry"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/1280px-Ornua_logo.svg-copy-300x105.png" alt="Ornua"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Lakeland-Dairies-Full-Colour-Logo-RGB.jpg" alt="Lakeland Dairies"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Arrabawn-Logo-copy.png" alt="Arrabawn"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/tipp-coop-fade-picture-300x129-1-copy.png" alt="Tipp Co-op"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/regen.jpg" alt="Regen"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/bbl-3.jpg" alt="BBL"></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/cand-2.jpg" alt="C&amp;D"></div>
+      <!-- duplicate set for seamless loop -->
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/britvic.jpg" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Nestle-Logo-copy-2.png" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Kellogg-Logo-copy-300x168.png" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Johnson_and_Johnson_Logo.svg-copy-300x54.png" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Glanbia_logo.png" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Diageo-Logo-copy.png" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Irish_Distillers_logo.jpg" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/kerry_STE_logistics.jpg" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/1280px-Ornua_logo.svg-copy-300x105.png" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Lakeland-Dairies-Full-Colour-Logo-RGB.jpg" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/Arrabawn-Logo-copy.png" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/tipp-coop-fade-picture-300x129-1-copy.png" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/regen.jpg" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/bbl-3.jpg" alt=""></div>
+      <div class="brands-slide"><img src="https://stllogistics.ie/wp-content/uploads/2022/02/cand-2.jpg" alt=""></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================
+     COUNTRYWIDE
+=========================== -->
+<section id="countrywide" aria-label="National coverage">
+  <div class="cw-bg" aria-hidden="true"></div>
+  <div class="cw-overlay" aria-hidden="true"></div>
+  <div class="container">
+    <div class="cw-inner">
+      <p class="eyebrow eyebrow--light">Coverage</p>
+      <h2 class="cw-title">Operating<br>Countrywide</h2>
+      <div class="depot-pills" aria-label="Depot locations">
+        <span class="depot-pill">Limerick</span>
+        <span class="depot-pill">Tipperary</span>
+        <span class="depot-pill">Clare</span>
+        <span class="depot-pill">Dublin</span>
+        <span class="depot-pill">Roscommon</span>
+        <span class="depot-pill">Belfast</span>
+      </div>
+      <a class="btn btn-yellow" href="contact.html">Contact Our Team</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================
+     SERVICES
+=========================== -->
+<section id="services" aria-label="Services">
+  <div class="container">
+    <div class="srv-header">
+      <div>
+        <p class="eyebrow">What We Do</p>
+        <h2 class="section-title">Services Offered</h2>
+        <p class="srv-intro">A fleet of 150+ trucks and 400+ trailers providing end-to-end logistics solutions right across Ireland.</p>
+      </div>
+      <a class="btn btn-yellow" href="services.html">All Services</a>
+    </div>
+
+    <div class="srv-carousel" id="srvCarousel" aria-label="Services carousel">
+
+      <!-- Slide 1: Warehousing -->
+      <div class="srv-slide active" role="group" aria-label="Slide 1 of 4">
+        <div class="srv-panel">
+          <span class="srv-tag">Storage</span>
+          <h3 class="srv-name">Warehousing</h3>
+          <p class="srv-desc">1.3 million sq.ft across 8 locations. Racked and block storage, value-add services and full inventory management.</p>
+          <a class="srv-more" href="warehousing.html">
+            Learn More <span class="srv-more-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="srv-slide-img">
+          <img src="https://stllogistics.ie/wp-content/uploads/2022/03/STL-warehousing.jpg" alt="STL Warehousing facility" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Slide 2: Transport -->
+      <div class="srv-slide" role="group" aria-label="Slide 2 of 4">
+        <div class="srv-panel">
+          <span class="srv-tag">Haulage</span>
+          <h3 class="srv-name">Transport</h3>
+          <p class="srv-desc">150+ trucks and 400+ trailers covering Ireland, the UK and Europe. Every vehicle tracked in real time.</p>
+          <a class="srv-more" href="transport.html">
+            Learn More <span class="srv-more-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="srv-slide-img">
+          <img src="https://stllogistics.ie/wp-content/uploads/2021/11/STL-Logistics-Contract_logistics_service-1.jpg" alt="STL Transport fleet" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Slide 3: Contract Logistics -->
+      <div class="srv-slide" role="group" aria-label="Slide 3 of 4">
+        <div class="srv-panel">
+          <span class="srv-tag">Managed</span>
+          <h3 class="srv-name">Contract Logistics</h3>
+          <p class="srv-desc">Our people, processes and technology embedded directly into your operation so you can focus on your core business.</p>
+          <a class="srv-more" href="contract-logistics.html">
+            Learn More <span class="srv-more-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="srv-slide-img">
+          <img src="https://stllogistics.ie/wp-content/uploads/2022/03/STL-sales-solutions.jpg" alt="Contract Logistics team" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Slide 4: CVRT Centre -->
+      <div class="srv-slide" role="group" aria-label="Slide 4 of 4">
+        <div class="srv-panel">
+          <span class="srv-tag">RSA Approved</span>
+          <h3 class="srv-name">CVRT Centre</h3>
+          <p class="srv-desc">RSA-approved testing with 2 dedicated lanes. Pre-checks, tacho calibrations, weight plating and Saturday slots available.</p>
+          <a class="srv-more" href="cvrt-centre.html">
+            Learn More <span class="srv-more-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="srv-slide-img">
+          <img src="https://stllogistics.ie/wp-content/uploads/2022/03/cvrt.jpg" alt="CVRT test centre" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="srv-progress" id="srvProgress"></div>
+
+      <!-- Controls -->
+      <div class="srv-controls">
+        <div class="srv-dots" role="tablist" aria-label="Slide navigation">
+          <button class="srv-dot active" role="tab" aria-selected="true" aria-label="Go to slide 1" data-idx="0"></button>
+          <button class="srv-dot" role="tab" aria-selected="false" aria-label="Go to slide 2" data-idx="1"></button>
+          <button class="srv-dot" role="tab" aria-selected="false" aria-label="Go to slide 3" data-idx="2"></button>
+          <button class="srv-dot" role="tab" aria-selected="false" aria-label="Go to slide 4" data-idx="3"></button>
+        </div>
+        <button class="srv-arr" id="srvPrev" aria-label="Previous slide">&#8592;</button>
+        <button class="srv-arr" id="srvNext" aria-label="Next slide">&#8594;</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================
+     CTA
+=========================== -->
+<section id="cta" aria-label="Contact call to action">
+  <div class="container">
+    <div class="cta-flex">
+      <div>
+        <h2 class="cta-head">Don't hesitate to make contact.</h2>
+        <p class="cta-sub">Our team is ready to discuss your logistics requirements.</p>
+      </div>
+      <div class="cta-right">
+        <a class="cta-phone" href="tel:+35361200200">+353 61 200200</a>
+        <a class="btn btn-yellow" href="contact.html">Request a Callback</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===========================
+     FOOTER
+=========================== -->
+<footer id="footer" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-top">
+      <a class="footer-logo" href="/" aria-label="STL Logistics Home">
+        <img src="https://stllogistics.ie/wp-content/uploads/2021/11/stl_logo_limerick.png" alt="STL Logistics">
+      </a>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://stllogistics.ie/customer_area_stl_logistics/">Customer Portal</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; STL Logistics Ltd. Website by
+        <a href="https://stewartdesign.ie/" target="_blank" rel="noopener noreferrer">StewartDesign.ie</a>
+      </p>
+      <p class="footer-reg">Registered in Ireland No: 250860</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button id="btt" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+
+<!-- ===========================
+     JAVASCRIPT
+=========================== -->
+<script>
+(function () {
+  'use strict';
+
+  /* --- Nav scroll --- */
+  const nav = document.getElementById('nav');
+  function syncNav() {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }
+  window.addEventListener('scroll', syncNav, { passive: true });
+  syncNav();
+
+  /* --- Mobile nav --- */
+  const toggle   = document.getElementById('nav-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  toggle.addEventListener('click', function () {
+    const opening = !mobileNav.classList.contains('open');
+    mobileNav.classList.toggle('open', opening);
+    toggle.classList.toggle('open', opening);
+    toggle.setAttribute('aria-expanded', opening);
+    document.body.style.overflow = opening ? 'hidden' : '';
+  });
+
+  mobileNav.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* --- Back to top --- */
+  const btt = document.getElementById('btt');
+  window.addEventListener('scroll', function () {
+    btt.classList.toggle('show', window.scrollY > 500);
+  }, { passive: true });
+  btt.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* --- Counter animation --- */
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function runCounter(el) {
+    const target   = parseInt(el.dataset.target.replace(/,/g, ''), 10);
+    const suffix   = el.dataset.suffix || '';
+    const duration = 1800;
+    const started  = performance.now();
+
+    function tick(now) {
+      const elapsed  = now - started;
+      const progress = Math.min(elapsed / duration, 1);
+      const value    = Math.round(easeOutCubic(progress) * target);
+      el.textContent = value.toLocaleString('en-IE') + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const counters = document.querySelectorAll('.stat-num[data-target]');
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        runCounter(entry.target);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(function (el) { io.observe(el); });
+
+  /* --- Services carousel --- */
+  (function() {
+    var carousel   = document.getElementById('srvCarousel');
+    if (!carousel) return;
+
+    var slides     = carousel.querySelectorAll('.srv-slide');
+    var dots       = carousel.querySelectorAll('.srv-dot');
+    var progressEl = document.getElementById('srvProgress');
+    var prevBtn    = document.getElementById('srvPrev');
+    var nextBtn    = document.getElementById('srvNext');
+    var total      = slides.length;
+    var current    = 0;
+    var interval   = 5000;
+    var timer      = null;
+    var startTime  = null;
+    var rafId      = null;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      dots[current].setAttribute('aria-selected', 'false');
+      current = (idx + total) % total;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      dots[current].setAttribute('aria-selected', 'true');
+      resetTimer();
+    }
+
+    function tick(ts) {
+      if (!startTime) startTime = ts;
+      var elapsed = ts - startTime;
+      var pct = Math.min(elapsed / interval * 100, 100);
+      progressEl.style.width = pct + '%';
+      if (elapsed >= interval) {
+        goTo(current + 1);
+      } else {
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+
+    function resetTimer() {
+      cancelAnimationFrame(rafId);
+      clearTimeout(timer);
+      progressEl.style.transition = 'none';
+      progressEl.style.width = '0%';
+      startTime = null;
+      rafId = requestAnimationFrame(function(ts) {
+        progressEl.style.transition = '';
+        startTime = ts;
+        rafId = requestAnimationFrame(tick);
+      });
+    }
+
+    prevBtn.addEventListener('click', function() { goTo(current - 1); });
+    nextBtn.addEventListener('click', function() { goTo(current + 1); });
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() { goTo(parseInt(this.dataset.idx)); });
+    });
+
+    carousel.addEventListener('mouseenter', function() { cancelAnimationFrame(rafId); });
+    carousel.addEventListener('mouseleave', function() { resetTimer(); });
+
+    resetTimer();
+  })();
+
+})();
+</script>
+
+</body>
+</html>

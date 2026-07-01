@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CVRT Centre — STL Logistics</title>
+  <meta name="description" content="STL Logistics operates an RSA-approved CVRT test centre with 2 test lanes. Pre-checks, tacho calibrations, weight plating, speed limiter calibrations and late evening and Saturday testing.">
+  <link rel="icon" href="https://stllogistics.ie/wp-content/uploads/2022/02/stl_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .cvrt-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .cvrt-logo-badge {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 14px 20px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .cvrt-logo-badge img {
+      height: 44px;
+      width: auto;
+    }
+    .rsa-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      background: rgba(253,201,20,0.12);
+      border: 2px solid var(--yellow);
+      border-radius: 4px;
+    }
+    .rsa-badge span {
+      font-family: var(--fh);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+    .rsa-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+    .booking-panel {
+      background: var(--navy);
+      border-radius: 6px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-top: 48px;
+    }
+    .booking-panel h3 {
+      font-family: var(--fh);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .booking-panel p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.94rem;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+    .booking-info { display: flex; flex-direction: column; gap: 16px; }
+    .booking-row { display: flex; gap: 12px; align-items: flex-start; }
+    .booking-label {
+      font-family: var(--fh);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      min-width: 80px;
+      margin-top: 3px;
+    }
+    .booking-val { color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.55; }
+    @media (max-width: 768px) { .booking-panel { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav" class="nav-solid" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html" aria-label="STL Logistics Home">
+      <img src="https://stllogistics.ie/wp-content/uploads/2021/11/stl_logo_limerick.png" alt="STL Logistics">
+    </a>
+    <ul class="nav-links" role="menubar">
+      <li class="nav-item"><a class="nav-link" href="index.html" role="menuitem">Home</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html" role="menuitem" aria-haspopup="true">
+          About Us <span class="nav-chevron" aria-hidden="true"></span>
+        </a>
+        <div class="nav-dropdown" role="menu">
+          <a href="about.html" role="menuitem">About STL</a>
+          <a href="facilities.html" role="menuitem">Facilities Overview</a>
+          <a href="what-sets-us-apart.html" role="menuitem">What Sets Us Apart</a>
+          <a href="csr.html" role="menuitem">Corporate Social Responsibility</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="services.html" aria-current="page" role="menuitem" aria-haspopup="true">
+          Services <span class="nav-chevron" aria-hidden="true"></span>
+        </a>
+        <div class="nav-dropdown" role="menu">
+          <a href="warehousing.html" role="menuitem">Warehousing</a>
+          <a href="transport.html" role="menuitem">Transport</a>
+          <a href="contract-logistics.html" role="menuitem">Contract Logistics</a>
+          <a href="cvrt-centre.html" aria-current="page" role="menuitem">CVRT Centre</a>
+        </div>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="careers.html" role="menuitem">Careers</a></li>
+      <li class="nav-item"><a class="nav-link" href="contact.html" role="menuitem">Contact</a></li>
+    </ul>
+    <a class="nav-portal-btn" href="https://stllogistics.ie/customer_area_stl_logistics/">Customer Portal</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-nav" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+  <a class="mob-link" href="index.html">Home</a>
+  <a class="mob-link" href="about.html">About Us</a>
+  <div class="mob-sub">
+    <a href="about.html">About STL</a>
+    <a href="facilities.html">Facilities Overview</a>
+    <a href="what-sets-us-apart.html">What Sets Us Apart</a>
+    <a href="csr.html">Corporate Social Responsibility</a>
+  </div>
+  <a class="mob-link" href="services.html">Services</a>
+  <div class="mob-sub">
+    <a href="warehousing.html">Warehousing</a>
+    <a href="transport.html">Transport</a>
+    <a href="contract-logistics.html">Contract Logistics</a>
+    <a href="cvrt-centre.html">CVRT Centre</a>
+  </div>
+  <a class="mob-link" href="careers.html">Careers</a>
+  <a class="mob-link" href="contact.html">Contact</a>
+  <a class="mob-portal" href="https://stllogistics.ie/customer_area_stl_logistics/">Customer Portal — Login</a>
+</div>
+
+
+<header class="page-hero page-hero--image" style="background-image: url('https://stllogistics.ie/wp-content/uploads/2022/02/CRVT-STL-Logistics.jpg');">
+  <div class="container">
+    <p class="page-hero-tag">RSA Approved</p>
+    <h1 class="page-hero-title">CVRT Centre</h1>
+    <p class="page-hero-sub">RSA-approved commercial vehicle testing with 2 test lanes, including late evening and Saturday testing slots.</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="services.html">Services</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">CVRT Centre</span>
+    </nav>
+  </div>
+</header>
+
+
+<section class="content-section" aria-label="CVRT overview">
+  <div class="container">
+    <div class="content-split">
+      <div class="content-body">
+        <p class="eyebrow">RSA Approved</p>
+        <h2 class="section-title">Commercial Vehicle Testing</h2>
+        <p>Our CVRT centre is fully approved by the Road Safety Authority of Ireland. With 2 dedicated test lanes and an experienced team of accredited testers, we provide fast and professional vehicle testing.</p>
+        <ul class="content-list">
+          <li>RSA approved 2 CVRT test lanes</li>
+          <li>CVRT pre check and voluntary checks</li>
+          <li>Late evening and Saturday testing</li>
+          <li>Tacho calibrations, weight plating and speed limiter calibrations</li>
+        </ul>
+        <div class="cvrt-logo-row">
+          <div class="rsa-badge">
+            <span class="rsa-dot"></span>
+            <span>RSA Approved Test Centre</span>
+          </div>
+          <div class="cvrt-logo-badge">
+            <img src="https://stllogistics.ie/wp-content/uploads/2022/02/CVRT-logo-1-copy.png" alt="CVRT logo" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <div class="content-img">
+        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/CRVT-STL-Logistics.jpg" alt="STL CVRT test centre lanes" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="content-section content-section--alt" aria-label="CVRT services detail">
+  <div class="container">
+    <p class="eyebrow">Services</p>
+    <h2 class="section-title">What We Offer</h2>
+    <p style="color:var(--grey);font-size:0.96rem;line-height:1.8;max-width:600px;margin-top:12px;margin-bottom:40px;">Our fully equipped test centre handles all standard commercial vehicle testing requirements, with flexible scheduling to minimise disruption to your fleet.</p>
+    <div class="card-grid">
+      <div class="info-card">
+        <h3>CVRT Testing</h3>
+        <p>Full RSA commercial vehicle roadworthiness tests across 2 dedicated test lanes for HGVs, trailers, buses, and light commercial vehicles.</p>
+      </div>
+      <div class="info-card">
+        <h3>Pre-Test Checks</h3>
+        <p>Thorough pre-CVRT inspections and voluntary checks to identify potential failures before the official test.</p>
+      </div>
+      <div class="info-card">
+        <h3>Tacho Calibrations</h3>
+        <p>Digital and analogue tachograph calibration by trained and certified technicians, compliant with EU regulations.</p>
+      </div>
+      <div class="info-card">
+        <h3>Weight Plating &amp; Speed Limiters</h3>
+        <p>Authorised weight plating and speed limiter calibrations for commercial vehicles in line with Irish and EU requirements.</p>
+      </div>
+      <div class="info-card">
+        <h3>Evening &amp; Saturday Testing</h3>
+        <p>Late evening and Saturday testing slots available to keep your fleet compliant without disrupting your working week.</p>
+      </div>
+      <div class="info-card">
+        <h3>Fleet Bookings</h3>
+        <p>We accommodate fleet bookings for multiple vehicles. Contact us to arrange a schedule that works for your operation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="content-section" aria-label="Booking">
+  <div class="container">
+    <div class="booking-panel">
+      <div>
+        <h3>Book Your CVRT Test</h3>
+        <p>Contact our team to schedule your test. We offer flexible appointment slots including evenings and Saturdays, and can accommodate fleet bookings.</p>
+        <a class="btn btn-yellow" href="contact.html">Book a Test</a>
+      </div>
+      <div class="booking-info">
+        <div class="booking-row">
+          <span class="booking-label">Location</span>
+          <span class="booking-val">Annacotty Business Park, Limerick</span>
+        </div>
+        <div class="booking-row">
+          <span class="booking-label">Hours</span>
+          <span class="booking-val">Mon–Fri and late evenings; Saturday testing available</span>
+        </div>
+        <div class="booking-row">
+          <span class="booking-label">Phone</span>
+          <span class="booking-val"><a href="tel:+35361200200" style="color:var(--yellow);">+353 61 200200</a></span>
+        </div>
+        <div class="booking-row">
+          <span class="booking-label">Lanes</span>
+          <span class="booking-val">2 dedicated RSA-approved CVRT test lanes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="cta" aria-label="Contact CTA">
+  <div class="container">
+    <div class="cta-flex">
+      <div>
+        <h2 class="cta-head">Ready to book your CVRT test?</h2>
+        <p class="cta-sub">Call us or send an enquiry to arrange a convenient appointment time.</p>
+      </div>
+      <div class="cta-right">
+        <a class="cta-phone" href="tel:+35361200200">+353 61 200200</a>
+        <a class="btn btn-yellow" href="contact.html">Book Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer id="footer" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-top">
+      <a class="footer-logo" href="index.html" aria-label="STL Logistics Home">
+        <img src="https://stllogistics.ie/wp-content/uploads/2021/11/stl_logo_limerick.png" alt="STL Logistics">
+      </a>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://stllogistics.ie/customer_area_stl_logistics/">Customer Portal</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; STL Logistics Ltd. Website by <a href="https://stewartdesign.ie/" target="_blank" rel="noopener noreferrer">StewartDesign.ie</a></p>
+      <p class="footer-reg">Registered in Ireland No: 250860</p>
+    </div>
+  </div>
+</footer>
+
+<button id="btt" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<script src="shared.js"></script>
+</body>
+</html>
