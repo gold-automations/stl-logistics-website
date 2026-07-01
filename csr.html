@@ -11,71 +11,129 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>
-    .pyramid-section {
+    /* Framework split */
+    .csr-framework {
       padding: var(--pad) 0;
       background: var(--light);
     }
-    .pyramid-wrap {
-      text-align: center;
-      margin-top: 48px;
+    .csr-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
     }
-    .pyramid-wrap img {
-      max-width: 560px;
+    .csr-body p {
+      color: var(--grey);
+      font-size: 0.96rem;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .csr-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .csr-pillar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--fh);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .csr-pillar::before {
+      content: '';
+      width: 18px;
+      height: 3px;
+      background: var(--yellow);
+      flex-shrink: 0;
+    }
+    .csr-img img {
       width: 100%;
-      border-radius: 4px;
+      max-width: 520px;
+      display: block;
+      margin: 0 auto;
     }
-    .accred-section {
-      padding: var(--pad) 0;
+
+    /* Accreditations strip */
+    .accred-strip {
+      padding: 64px 0;
+      background: var(--navy);
     }
+    .accred-strip .eyebrow { color: rgba(255,255,255,0.5); }
+    .accred-strip .section-title { color: var(--white); margin-bottom: 48px; }
     .accred-logos {
       display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: center;
+      gap: 20px;
+      align-items: stretch;
       justify-content: center;
-      margin-top: 48px;
+      flex-wrap: wrap;
     }
     .accred-logo {
-      background: var(--white);
-      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 4px;
-      padding: 20px 28px;
+      padding: 22px 28px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 12px;
       min-width: 140px;
-      min-height: 80px;
+      flex: 1;
+      max-width: 160px;
     }
     .accred-logo img {
-      max-height: 60px;
-      max-width: 120px;
+      max-height: 56px;
+      max-width: 110px;
       width: auto;
       object-fit: contain;
     }
-    .gender-pay-box {
-      margin-top: 56px;
-      padding: 36px 40px;
-      background: var(--navy);
-      border-radius: 6px;
+    .accred-logo-name {
+      font-family: var(--fh);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+    }
+
+    /* Gender pay */
+    .gender-section {
+      padding: 56px 0;
+      background: var(--white);
+    }
+    .gender-box {
+      padding: 40px 48px;
+      background: var(--light);
+      border-left: 4px solid var(--yellow);
+      border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 32px;
       flex-wrap: wrap;
     }
-    .gender-pay-box h3 {
+    .gender-box h3 {
       font-family: var(--fh);
       font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--white);
+      font-weight: 800;
+      color: var(--dark);
       margin-bottom: 6px;
     }
-    .gender-pay-box p {
-      color: rgba(255,255,255,0.55);
+    .gender-box p {
+      color: var(--grey);
       font-size: 0.9rem;
     }
-    @media (max-width: 640px) {
-      .gender-pay-box { padding: 28px 24px; }
+
+    @media (max-width: 768px) {
+      .csr-split { grid-template-columns: 1fr; gap: 40px; }
+      .csr-img { order: -1; }
+      .accred-logo { max-width: calc(50% - 10px); }
+      .gender-box { padding: 28px 24px; }
     }
   </style>
 </head>
@@ -157,44 +215,65 @@
 </header>
 
 
-<!-- PYRAMID -->
-<section class="pyramid-section" aria-label="CSR framework">
+<!-- FRAMEWORK -->
+<section class="csr-framework" aria-label="CSR framework">
   <div class="container">
-    <p class="eyebrow">Our Approach</p>
-    <h2 class="section-title">Our CSR Framework</h2>
-    <div class="pyramid-wrap">
-      <img src="https://stllogistics.ie/wp-content/uploads/2022/02/pyramid.png" alt="STL Logistics CSR pyramid framework" loading="lazy">
+    <div class="csr-split">
+      <div class="csr-body">
+        <p class="eyebrow">Our Approach</p>
+        <h2 class="section-title">Our CSR Framework</h2>
+        <p>At STL, responsible business is not a box-ticking exercise. Our CSR framework is built around four pillars that shape how we operate every day — from the safety of our people to the environmental impact of our fleet.</p>
+        <p>Our growth has been built on doing things the right way: investing in our people, holding ourselves to internationally recognised standards, and being transparent with the clients and communities who depend on us.</p>
+        <div class="csr-pillars">
+          <div class="csr-pillar">Sustainability &amp; Environmental Responsibility</div>
+          <div class="csr-pillar">Health, Safety &amp; Wellbeing</div>
+          <div class="csr-pillar">Quality Management &amp; Compliance</div>
+          <div class="csr-pillar">Ethical Trade &amp; Social Accountability</div>
+        </div>
+      </div>
+      <div class="csr-img">
+        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/pyramid.png" alt="STL Logistics CSR pyramid framework" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
 
 
 <!-- ACCREDITATIONS -->
-<section class="accred-section" aria-label="Accreditations">
+<section class="accred-strip" aria-label="Accreditations">
   <div class="container">
     <p class="eyebrow">Standards &amp; Compliance</p>
     <h2 class="section-title">Our Accreditations</h2>
-    <p style="color:var(--grey);font-size:0.96rem;line-height:1.8;max-width:600px;margin-top:12px;">STL holds internationally recognised certifications across quality management, occupational health &amp; safety, pharmaceutical distribution, ethical trade, and environmental disclosure.</p>
-
     <div class="accred-logos">
       <div class="accred-logo">
-        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/iso1-1-155x160.jpg" alt="ISO 9001 certified" loading="lazy">
+        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/iso1-1-155x160.jpg" alt="ISO 9001" loading="lazy">
+        <span class="accred-logo-name">ISO 9001</span>
       </div>
       <div class="accred-logo">
-        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/iso2-157x160.jpg" alt="ISO 45001 certified" loading="lazy">
+        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/iso2-157x160.jpg" alt="ISO 45001" loading="lazy">
+        <span class="accred-logo-name">ISO 45001</span>
       </div>
       <div class="accred-logo">
-        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/hpra-160x92.jpg" alt="HPRA approved" loading="lazy">
+        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/hpra-160x92.jpg" alt="HPRA" loading="lazy">
+        <span class="accred-logo-name">HPRA</span>
       </div>
       <div class="accred-logo">
-        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/sedex-155x160.png" alt="SEDEX member" loading="lazy">
+        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/sedex-155x160.png" alt="SEDEX" loading="lazy">
+        <span class="accred-logo-name">SEDEX</span>
       </div>
       <div class="accred-logo">
-        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/cdp-160x87.png" alt="CDP disclosed" loading="lazy">
+        <img src="https://stllogistics.ie/wp-content/uploads/2022/02/cdp-160x87.png" alt="CDP" loading="lazy">
+        <span class="accred-logo-name">CDP</span>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="gender-pay-box">
+
+<!-- GENDER PAY -->
+<section class="gender-section" aria-label="Gender Pay Report">
+  <div class="container">
+    <div class="gender-box">
       <div>
         <h3>Gender Pay Report 2022</h3>
         <p>Download our Gender Pay Gap Report for 2022.</p>
