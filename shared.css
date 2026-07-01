@@ -178,7 +178,7 @@ ul { list-style: none; }
 }
 .nav-dropdown {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 4px);
   left: 0;
   background: var(--white);
   min-width: 230px;
@@ -188,7 +188,7 @@ ul { list-style: none; }
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
-  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+  transition: opacity 0.2s, visibility 0.2s 0.12s, transform 0.2s;
   pointer-events: none;
 }
 .nav-item:hover .nav-dropdown,
@@ -197,6 +197,7 @@ ul { list-style: none; }
   visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
+  transition: opacity 0.2s, visibility 0s, transform 0.2s;
 }
 .nav-dropdown a {
   display: block;
