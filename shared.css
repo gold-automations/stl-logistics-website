@@ -312,7 +312,7 @@ ul { list-style: none; }
 .page-hero {
   position: relative;
   background: var(--navy);
-  padding: calc(var(--nav-h) + 64px) 0 72px;
+  padding: calc(var(--nav-h) + 40px) 0 48px;
   overflow: hidden;
 }
 .page-hero::after {
