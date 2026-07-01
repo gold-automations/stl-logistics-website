@@ -33,6 +33,22 @@
     });
   });
 
+  /* --- Dropdown nav with grace-period on hide --- */
+  document.querySelectorAll('.nav-item').forEach(function (item) {
+    var dropdown = item.querySelector('.nav-dropdown');
+    if (!dropdown) return;
+    var timer;
+    item.addEventListener('mouseenter', function () {
+      clearTimeout(timer);
+      dropdown.classList.add('is-open');
+    });
+    item.addEventListener('mouseleave', function () {
+      timer = setTimeout(function () {
+        dropdown.classList.remove('is-open');
+      }, 150);
+    });
+  });
+
   /* --- Back to top --- */
   var btt = document.getElementById('btt');
   window.addEventListener('scroll', function () {
