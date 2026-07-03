@@ -10,6 +10,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-hero--blurred { background-image: none !important; }
+    .page-hero--blurred::before { z-index: 1; }
+    .page-hero--blurred-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('contract-logistics-upscaled.png');
+      background-size: cover;
+      background-position: center 25%;
+      filter: blur(6px);
+      transform: scale(1.08);
+      z-index: 0;
+    }
+  </style>
 </head>
 <body>
 
@@ -74,7 +88,8 @@
 </div>
 
 
-<header class="page-hero page-hero--image" style="background-image: url('contract-logistics-upscaled.png');">
+<header class="page-hero page-hero--image page-hero--blurred">
+  <div class="page-hero--blurred-bg"></div>
   <div class="container">
     <p class="page-hero-tag">Our Services</p>
     <h1 class="page-hero-title">Contract Logistics</h1>
