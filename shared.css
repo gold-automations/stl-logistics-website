@@ -151,7 +151,7 @@ ul { list-style: none; }
 }
 .nav-portal-btn {
   flex: 0 0 auto;
-  padding-right: 28px;
+  margin-right: 28px;
 }
 .nav-toggle { flex: 0 0 auto; margin-right: 24px; }
 .nav-item { position: relative; }
