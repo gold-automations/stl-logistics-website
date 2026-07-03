@@ -139,7 +139,7 @@ ul { list-style: none; }
 }
 .nav-logo {
   flex: 0 0 auto;
-  padding-left: max(40px, calc((100vw - var(--max-w)) / 2 + 40px));
+  padding-left: 80px;
 }
 .nav-logo img { height: 56px; width: auto; }
 .nav-links {
@@ -151,7 +151,7 @@ ul { list-style: none; }
 }
 .nav-portal-btn {
   flex: 0 0 auto;
-  padding-right: max(40px, calc((100vw - var(--max-w)) / 2 + 40px));
+  padding-right: 80px;
 }
 .nav-toggle { flex: 0 0 auto; margin-right: 24px; }
 .nav-item { position: relative; }
@@ -659,6 +659,7 @@ ul { list-style: none; }
 ================================ */
 @media (max-width: 768px) {
   :root { --pad: 60px; }
+  .nav-logo { padding-left: 20px; }
   .nav-links { display: none; }
   .nav-portal-btn { display: none; }
   .nav-toggle { display: flex; }
