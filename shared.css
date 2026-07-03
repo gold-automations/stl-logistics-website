@@ -137,9 +137,7 @@ ul { list-style: none; }
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   height: var(--nav-h);
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 clamp(24px, 4vw, 60px);
 }
 .nav-logo { justify-self: start; }
 .nav-logo img { height: 56px; width: auto; }
